@@ -1,0 +1,41 @@
+<view class="container">
+  <view class="card">
+    <text class="card-title">微信账号</text>
+    <text class="card-desc">以微信 openid 作为小程序账号（无需注册登录）</text>
+    <text class="card-desc muted">标识：{{openidMask}}</text>
+  </view>
+
+  <view class="card">
+    <text class="card-title">套餐状态</text>
+    <text class="card-desc">{{planLabel}}</text>
+  </view>
+
+  <view class="card">
+    <text class="card-title">兑换激活码</text>
+    <text class="card-desc muted">激活码将绑定当前微信账号</text>
+    <input
+      class="redeem-input"
+      placeholder="输入激活码"
+      value="{{redeemCode}}"
+      bindinput="onRedeemInput"
+    />
+    <button class="btn-primary" loading="{{redeeming}}" disabled="{{redeeming}}" bindtap="onRedeem">
+      兑换
+    </button>
+  </view>
+
+  <view class="card">
+    <text class="card-title">云端数据</text>
+    <button class="btn-primary" loading="{{syncing}}" disabled="{{syncing}}" bindtap="onPullData">
+      从云端拉取数据
+    </button>
+    <text class="card-desc muted" style="margin-top: 16rpx;">
+      商品 {{counts.products}} · 客户 {{counts.customers}} · 我司 {{counts.companies}} · 报价 {{counts.quotes}} · 合同 {{counts.contracts}}
+    </text>
+  </view>
+
+  <view class="card">
+    <text class="card-title muted">API：{{apiBase}}</text>
+    <button class="btn-outline" bindtap="onResetIdentity">重新识别微信</button>
+  </view>
+</view>

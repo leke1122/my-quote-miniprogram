@@ -1,0 +1,39 @@
+.btn-row {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  margin-top: 28rpx;
+}
+
+.btn-primary {
+  background: #131b2e !important;
+  color: #fff !important;
+  border-radius: 16rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.btn-primary::after,
+.btn-outline::after {
+  border: none;
+}
+
+.btn-outline {
+  background: #fff !important;
+  color: #131b2e !important;
+  border: 2rpx solid #e2e8f0 !important;
+  border-radius: 16rpx;
+  font-size: 28rpx;
+  margin-top: 20rpx;
+}
+
+.redeem-input {
+  width: 100%;
+  height: 88rpx;
+  margin: 20rpx 0;
+  padding: 0 24rpx;
+  border-radius: 16rpx;
+  background: #f1f5f9;
+  font-size: 30rpx;
+  box-sizing: border-box;
+}

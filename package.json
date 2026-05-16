@@ -1,0 +1,13 @@
+{
+  "name": "my-quote-miniprogram",
+  "version": "0.1.0",
+  "private": true,
+  "description": "智序签单 · 微信小程序（对接 my-quote Web 后端 API）",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "miniprogram-api-typings": "^4.0.7",
+    "typescript": "^5.7.2"
+  }
+}

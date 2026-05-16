@@ -1,0 +1,55 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/products/index",
+    "pages/customers/index",
+    "pages/company/index",
+    "pages/quote-list/index",
+    "pages/contract-list/index",
+    "pages/quote-new/index",
+    "pages/contract-new/index",
+    "pages/settings/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "智序签单",
+    "navigationBarBackgroundColor": "#131b2e",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f1f5f9",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#94a3b8",
+    "selectedColor": "#131b2e",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页",
+        "iconPath": "assets/tab-home.png",
+        "selectedIconPath": "assets/tab-home-active.png"
+      },
+      {
+        "pagePath": "pages/quote-new/index",
+        "text": "报价",
+        "iconPath": "assets/tab-quote.png",
+        "selectedIconPath": "assets/tab-quote-active.png"
+      },
+      {
+        "pagePath": "pages/contract-new/index",
+        "text": "合同",
+        "iconPath": "assets/tab-contract.png",
+        "selectedIconPath": "assets/tab-contract-active.png"
+      },
+      {
+        "pagePath": "pages/settings/index",
+        "text": "设置",
+        "iconPath": "assets/tab-settings.png",
+        "selectedIconPath": "assets/tab-settings-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

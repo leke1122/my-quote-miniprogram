@@ -1,0 +1,33 @@
+<view class="home-page">
+  <view class="home-header">
+    <text class="home-title">智序签单</text>
+    <text class="home-subtitle">报价与合同 · 移动端工作台</text>
+    <view class="search-bar">
+      <input
+        class="search-input"
+        placeholder="搜索商品、客户、我司、报价/合同单号…"
+        placeholder-class="search-placeholder"
+        value="{{searchQuery}}"
+        bindinput="onSearchInput"
+        bindconfirm="onSearchConfirm"
+        confirm-type="search"
+      />
+    </view>
+  </view>
+
+  <view class="container">
+    <text class="hint muted">{{syncHint}}</text>
+    <block wx:for="{{modules}}" wx:key="title">
+      <view class="module-card" data-url="{{item.url}}" bindtap="onModuleTap">
+        <view class="module-body">
+          <view class="module-title-row">
+            <text class="module-title">{{item.title}}</text>
+            <text class="module-tag">{{item.tag}}</text>
+          </view>
+          <text class="module-desc">{{item.desc}}</text>
+        </view>
+        <text class="module-arrow">›</text>
+      </view>
+    </block>
+  </view>
+</view>

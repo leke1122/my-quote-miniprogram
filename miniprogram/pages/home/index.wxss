@@ -1,0 +1,99 @@
+.home-page {
+  min-height: 100vh;
+  background: #f1f5f9;
+}
+
+.home-header {
+  padding: 32rpx 32rpx 40rpx;
+  background: linear-gradient(135deg, #131b2e 0%, #1e293b 100%);
+  color: #fff;
+}
+
+.home-title {
+  display: block;
+  font-size: 40rpx;
+  font-weight: 700;
+}
+
+.home-subtitle {
+  display: block;
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.search-bar {
+  margin-top: 28rpx;
+}
+
+.search-input {
+  width: 100%;
+  height: 72rpx;
+  padding: 0 28rpx;
+  border-radius: 20rpx;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 28rpx;
+  box-sizing: border-box;
+}
+
+.search-placeholder {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.hint {
+  display: block;
+  margin-bottom: 24rpx;
+}
+
+.module-card {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 28rpx 32rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(15, 23, 42, 0.06);
+}
+
+.module-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.module-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.module-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.module-tag {
+  font-size: 20rpx;
+  font-weight: 700;
+  color: #3d5a80;
+  background: #d0e1fb;
+  padding: 4rpx 16rpx;
+  border-radius: 999rpx;
+}
+
+.module-desc {
+  display: block;
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+.module-arrow {
+  margin-left: 16rpx;
+  font-size: 40rpx;
+  color: #cbd5e1;
+  font-weight: 300;
+}
