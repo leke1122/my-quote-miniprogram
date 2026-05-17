@@ -1,1 +1,3 @@
 @import "../quote-form/index.wxss";
+
+/* 与报价表单共用 quick-panel / picker-row 样式 */

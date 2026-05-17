@@ -17,10 +17,14 @@ import {
 } from "../../utils/quoteTotals";
 import { showSyncResult } from "../../utils/syncToast";
 import { ensureWechatSession } from "../../utils/wechatAuth";
+import { masterQuickBehavior } from "../../behaviors/masterQuick";
+import { rebuildMasterPickers } from "../../utils/masterPicker";
 
 type PickerProduct = { id: string; label: string };
 
 Page({
+  behaviors: [masterQuickBehavior],
+
   data: {
     editingId: "",
     isEdit: false,
@@ -46,10 +50,14 @@ Page({
   _companies: [] as Company[],
   _customers: [] as Customer[],
 
+  onShow() {
+    rebuildMasterPickers(this, this.companyId(), this.customerId());
+  },
+
   async onLoad(query: Record<string, string | undefined>) {
     const ok = await ensureWechatSession();
     if (!ok) return;
-    this.loadMasters();
+    rebuildMasterPickers(this);
     const id = query.id ? decodeURIComponent(query.id) : "";
     if (id) {
       const c = getContractById(id);
@@ -64,20 +72,6 @@ Page({
     }
     this.initNewContract();
     wx.setNavigationBarTitle({ title: "新建合同" });
-  },
-
-  loadMasters() {
-    const payload = getFullPayload();
-    this._companies = payload.companies;
-    this._customers = payload.customers;
-    this.setData({
-      companyNames: this._companies.map((c) => c.name || c.abbr || "未命名"),
-      customerNames: this._customers.map((c) => c.name || c.code || "未命名"),
-      pickerProducts: payload.products.map((p) => ({
-        id: p.id,
-        label: `${p.code} · ${p.name}`,
-      })),
-    });
   },
 
   companyId(): string {
@@ -195,10 +189,7 @@ Page({
     this.setData({ showProductPicker: !this.data.showProductPicker });
   },
 
-  onAddProduct(e: WechatMiniprogram.TouchEvent) {
-    const id = e.currentTarget.dataset.id as string;
-    const p = getProductById(id);
-    if (!p) return;
+  addProductLine(p: { id: string; code: string; name: string; model: string; spec: string; unit: string; price: number }) {
     const modelSpec = [p.model, p.spec].filter(Boolean).join(" ");
     const line: ContractLine = {
       id: newId(),
@@ -211,8 +202,16 @@ Page({
       amount: calcLineAmount(p.price, 1),
       remark: "",
     };
-    this.setData({ lines: [...this.data.lines, line], showProductPicker: false });
+    this.setData({ lines: [...this.data.lines, line] });
     this.refreshTotals();
+  },
+
+  onAddProduct(e: WechatMiniprogram.TouchEvent) {
+    const id = e.currentTarget.dataset.id as string;
+    const p = getProductById(id);
+    if (!p) return;
+    this.addProductLine(p);
+    this.setData({ showProductPicker: false });
   },
 
   onLineQtyInput(e: WechatMiniprogram.Input) {

@@ -9,13 +9,43 @@
     <text class="form-label">签订地点</text>
     <input class="form-input" value="{{signingPlace}}" bindinput="onPlaceInput" placeholder="选填" />
     <text class="form-label required">我司主体</text>
-    <picker mode="selector" range="{{companyNames}}" value="{{companyIndex}}" bindchange="onCompanyChange">
-      <view class="form-input">{{companyNames[companyIndex] || '请选择'}}</view>
-    </picker>
+    <view class="picker-row">
+      <picker class="picker-flex" mode="selector" range="{{companyNames}}" value="{{companyIndex}}" bindchange="onCompanyChange">
+        <view class="form-input">{{companyNames[companyIndex] || '请选择'}}</view>
+      </picker>
+      <button class="btn-inline" bindtap="toggleQuickCompany">+ 新增</button>
+    </view>
+    <view class="quick-panel" wx:if="{{showQuickCompany}}">
+      <text class="quick-panel-title">快速新增我司 · 同步至「我司信息」</text>
+      <text class="form-label required">公司名称</text>
+      <input class="form-input" placeholder="必填" value="{{quickCompanyName}}" bindinput="onQuickCompanyNameInput" />
+      <text class="form-label">简称</text>
+      <input class="form-input" value="{{quickCompanyAbbr}}" bindinput="onQuickCompanyAbbrInput" />
+      <view class="quick-panel-actions">
+        <button class="btn-link" bindtap="goFullCompanyEdit">完整表单</button>
+        <button class="btn-primary btn-compact" loading="{{quickMasterSaving}}" bindtap="onSaveQuickCompany">保存并选用</button>
+      </view>
+    </view>
     <text class="form-label required">客户（甲方）</text>
-    <picker mode="selector" range="{{customerNames}}" value="{{customerIndex}}" bindchange="onCustomerChange">
-      <view class="form-input">{{customerNames[customerIndex] || '请选择'}}</view>
-    </picker>
+    <view class="picker-row">
+      <picker class="picker-flex" mode="selector" range="{{customerNames}}" value="{{customerIndex}}" bindchange="onCustomerChange">
+        <view class="form-input">{{customerNames[customerIndex] || '请选择'}}</view>
+      </picker>
+      <button class="btn-inline" bindtap="toggleQuickCustomer">+ 新增</button>
+    </view>
+    <view class="quick-panel" wx:if="{{showQuickCustomer}}">
+      <text class="quick-panel-title">快速新增客户 · 同步至「客户信息」</text>
+      <text class="form-label required">客户名称</text>
+      <input class="form-input" placeholder="必填" value="{{quickCustomerName}}" bindinput="onQuickCustomerNameInput" />
+      <text class="form-label">联系人</text>
+      <input class="form-input" value="{{quickCustomerContact}}" bindinput="onQuickCustomerContactInput" />
+      <text class="form-label">电话</text>
+      <input class="form-input" type="number" value="{{quickCustomerPhone}}" bindinput="onQuickCustomerPhoneInput" />
+      <view class="quick-panel-actions">
+        <button class="btn-link" bindtap="goFullCustomerEdit">完整表单</button>
+        <button class="btn-primary btn-compact" loading="{{quickMasterSaving}}" bindtap="onSaveQuickCustomer">保存并选用</button>
+      </view>
+    </view>
     <text class="muted" wx:if="{{partySummary}}" style="margin-top:12rpx;display:block;">{{partySummary}}</text>
   </view>
 
@@ -24,9 +54,31 @@
       <text class="card-title">合同明细</text>
       <text class="muted">{{lines.length}} 行</text>
     </view>
-    <button class="btn-add-line" bindtap="toggleProductPicker">
-      {{showProductPicker ? '收起商品库' : '从商品库添加'}}
-    </button>
+    <view class="picker-row" style="margin-top:0;">
+      <button class="btn-add-line picker-flex" bindtap="toggleProductPicker">
+        {{showProductPicker ? '收起商品库' : '从商品库添加'}}
+      </button>
+      <button class="btn-inline" bindtap="toggleQuickProduct">+ 新商品</button>
+    </view>
+    <view class="quick-panel" wx:if="{{showQuickProduct}}">
+      <text class="quick-panel-title">快速新增商品 · 同步至「商品信息」</text>
+      <text class="form-label required">商品名称</text>
+      <input class="form-input" placeholder="必填" value="{{quickProductName}}" bindinput="onQuickProductNameInput" />
+      <view class="line-row">
+        <view class="line-field">
+          <text class="form-label">单价</text>
+          <input class="form-input" type="digit" value="{{quickProductPrice}}" bindinput="onQuickProductPriceInput" />
+        </view>
+        <view class="line-field">
+          <text class="form-label">单位</text>
+          <input class="form-input" value="{{quickProductUnit}}" bindinput="onQuickProductUnitInput" />
+        </view>
+      </view>
+      <view class="quick-panel-actions">
+        <button class="btn-link" bindtap="goFullProductEdit">完整表单</button>
+        <button class="btn-primary btn-compact" loading="{{quickMasterSaving}}" bindtap="onSaveQuickProduct">保存并加入明细</button>
+      </view>
+    </view>
     <scroll-view wx:if="{{showProductPicker}}" class="product-pick-list" scroll-y>
       <view
         class="product-pick-item"
