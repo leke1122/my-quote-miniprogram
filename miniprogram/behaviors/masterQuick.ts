@@ -100,7 +100,7 @@ export const masterQuickBehavior = Behavior({
         quickCustomerContact: "",
         quickCustomerPhone: "",
       });
-      rebuildMasterPickers(this, undefined, res.customer.id);
+      rebuildMasterPickers(this as unknown as MasterPickerHost, undefined, res.customer.id);
     },
 
     goFullCustomerEdit() {
@@ -145,13 +145,9 @@ export const masterQuickBehavior = Behavior({
         quickProductUnit: "件",
         showProductPicker: true,
       });
-      rebuildMasterPickers(this);
-      const host = this as WechatMiniprogram.Page.TrivialInstance & {
-        addProductLine?: (p: Product) => void;
-      };
-      if (typeof host.addProductLine === "function") {
-        host.addProductLine(res.product);
-      }
+      rebuildMasterPickers(this as unknown as MasterPickerHost);
+      const host = this as unknown as { addProductLine?: (p: Product) => void };
+      host.addProductLine?.(res.product);
     },
 
     goFullProductEdit() {
