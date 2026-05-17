@@ -1,7 +1,27 @@
 <view class="container">
   <view class="link-home" bindtap="onGoHome">← 业务工作台</view>
-  <view class="card">
-    <text class="card-title">{{title}}</text>
-    <text class="card-desc">{{desc}}</text>
-  </view>
+  <button class="btn-primary hub-cta" bindtap="onNew">+ 新建合同</button>
+  <text class="hub-recent-title">最近合同</text>
+  <block wx:if="{{recent.length === 0}}">
+    <view class="empty-box">
+      <text class="empty-title">暂无合同</text>
+      <text class="empty-desc">请先维护商品、客户与我司信息，再新建销售合同</text>
+    </view>
+  </block>
+  <block wx:else>
+    <view
+      class="card list-row"
+      wx:for="{{recent}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="onOpen"
+    >
+      <view class="list-row-main">
+        <text class="list-title">{{item.title}}</text>
+        <text class="list-subtitle">{{item.subtitle}}</text>
+      </view>
+      <text class="list-meta">{{item.meta}}</text>
+    </view>
+    <view class="link-home" style="text-align:center;margin-top:16rpx;" bindtap="onAllList">查看全部历史合同 →</view>
+  </block>
 </view>

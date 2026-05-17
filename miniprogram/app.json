@@ -8,7 +8,9 @@
     "pages/company/index",
     "pages/company-edit/index",
     "pages/quote-list/index",
+    "pages/quote-form/index",
     "pages/contract-list/index",
+    "pages/contract-form/index",
     "pages/quote-new/index",
     "pages/contract-new/index",
     "pages/settings/index"

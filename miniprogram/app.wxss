@@ -25,6 +25,25 @@ page {
   color: #0f172a;
 }
 
+.module-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16rpx;
+}
+
+.hub-cta {
+  margin-bottom: 24rpx;
+}
+
+.hub-recent-title {
+  display: block;
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 16rpx;
+}
+
 .card-desc {
   margin-top: 8rpx;
   font-size: 24rpx;

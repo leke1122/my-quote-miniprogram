@@ -1,4 +1,11 @@
-import type { Company, Customer, DataBackupPayload, Product } from "../types/entities";
+import type {
+  Company,
+  Contract,
+  Customer,
+  DataBackupPayload,
+  Product,
+  Quote,
+} from "../types/entities";
 import { apiRequest } from "./request";
 
 const CACHE_KEY = "project_data_payload";
@@ -60,12 +67,12 @@ function normalizePayload(raw: unknown): DataBackupPayload {
     companies: Array.isArray(o.companies) ? (o.companies as Company[]) : [],
     customers: Array.isArray(o.customers) ? (o.customers as Customer[]) : [],
     products: Array.isArray(o.products) ? (o.products as Product[]) : [],
-    quotes: Array.isArray(o.quotes) ? o.quotes : [],
+    quotes: Array.isArray(o.quotes) ? (o.quotes as Quote[]) : [],
     quoteCounter:
       o.quoteCounter && typeof o.quoteCounter === "object"
         ? (o.quoteCounter as Record<string, number>)
         : {},
-    contracts: Array.isArray(o.contracts) ? o.contracts : [],
+    contracts: Array.isArray(o.contracts) ? (o.contracts as Contract[]) : [],
     contractCounter:
       o.contractCounter && typeof o.contractCounter === "object"
         ? (o.contractCounter as Record<string, number>)

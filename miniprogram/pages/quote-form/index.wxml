@@ -1,0 +1,83 @@
+<view class="container form-page">
+  <view class="form-card">
+    <text class="form-label">报价单号</text>
+    <input class="form-input" value="{{quoteNo}}" bindinput="onQuoteNoInput" />
+    <text class="form-label">报价日期</text>
+    <picker mode="date" value="{{date}}" bindchange="onDateChange">
+      <view class="form-input">{{date}}</view>
+    </picker>
+    <text class="form-label required">我司主体</text>
+    <picker mode="selector" range="{{companyNames}}" value="{{companyIndex}}" bindchange="onCompanyChange">
+      <view class="form-input">{{companyNames[companyIndex] || '请选择'}}</view>
+    </picker>
+    <text class="form-label required">客户</text>
+    <picker mode="selector" range="{{customerNames}}" value="{{customerIndex}}" bindchange="onCustomerChange">
+      <view class="form-input">{{customerNames[customerIndex] || '请选择'}}</view>
+    </picker>
+  </view>
+
+  <view class="form-card">
+    <view class="module-title-row">
+      <text class="card-title">商品明细</text>
+      <text class="muted">{{lines.length}} 行</text>
+    </view>
+    <button class="btn-add-line" bindtap="toggleProductPicker">
+      {{showProductPicker ? '收起商品库' : '从商品库添加'}}
+    </button>
+    <scroll-view wx:if="{{showProductPicker}}" class="product-pick-list" scroll-y>
+      <view
+        class="product-pick-item"
+        wx:for="{{pickerProducts}}"
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="onAddProduct"
+      >
+        <text>{{item.label}}</text>
+        <text class="muted">添加</text>
+      </view>
+      <view wx:if="{{pickerProducts.length === 0}}" class="muted" style="padding: 24rpx 0;">请先在「商品信息」中添加商品</view>
+    </scroll-view>
+    <block wx:for="{{lines}}" wx:key="id">
+      <view class="line-card">
+        <view class="line-card-head">
+          <view>
+            <text class="line-name">{{item.name}}</text>
+            <text class="line-meta">{{item.code}} · {{item.model}} {{item.spec}}</text>
+          </view>
+          <button class="btn-line-del" data-id="{{item.id}}" bindtap="onRemoveLine">删除</button>
+        </view>
+        <view class="line-row">
+          <view class="line-field">
+            <text class="line-field-label">数量</text>
+            <input class="line-input" type="digit" value="{{item.qty}}" data-id="{{item.id}}" bindinput="onLineQtyInput" />
+          </view>
+          <view class="line-field">
+            <text class="line-field-label">单价</text>
+            <input class="line-input" type="digit" value="{{item.price}}" data-id="{{item.id}}" bindinput="onLinePriceInput" />
+          </view>
+          <view class="line-field">
+            <text class="line-field-label">金额</text>
+            <view class="line-input" style="background:#f1f5f9;">{{item.amount}}</view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view class="form-card">
+    <view class="form-row-switch">
+      <text class="form-label" style="margin:0;">含税</text>
+      <switch checked="{{taxIncluded}}" bindchange="onTaxSwitch" color="#131b2e" />
+    </view>
+    <text class="form-label" wx:if="{{taxIncluded}}">税率（%）</text>
+    <input wx:if="{{taxIncluded}}" class="form-input" type="digit" value="{{taxRateStr}}" bindinput="onTaxRateInput" />
+    <view class="totals-row"><text>商品合计</text><text>¥{{subtotalStr}}</text></view>
+    <view class="totals-row" wx:if="{{taxIncluded}}"><text>税额</text><text>¥{{taxStr}}</text></view>
+    <view class="totals-row totals-row--grand"><text>总计</text><text>¥{{grandStr}}</text></view>
+  </view>
+</view>
+<view class="form-footer">
+  <button wx:if="{{isEdit}}" class="btn-danger" disabled="{{saving}}" bindtap="onDelete">删除</button>
+  <button class="btn-secondary" disabled="{{saving}}" bindtap="onCancel">取消</button>
+  <button class="btn-primary" loading="{{saving}}" disabled="{{saving}}" bindtap="onSave">保存</button>
+</view>
