@@ -5,6 +5,7 @@ export interface ListRow {
   title: string;
   subtitle: string;
   meta?: string;
+  imageUrl?: string;
 }
 
 function asRecord(v: unknown): Record<string, unknown> | null {
@@ -52,11 +53,13 @@ export function mapProductRows(): ListRow[] {
     const name = str(p.name, "未命名商品");
     const model = [str(p.model), str(p.spec)].filter(Boolean).join(" ");
     const price = Number(p.price);
+    const image = str(p.image);
     return {
       id: str(p.id, `product-${i}`),
       title: `${code} · ${name}`,
       subtitle: model || "暂无型号规格",
       meta: Number.isFinite(price) ? money(price) : "",
+      imageUrl: image.startsWith("http") || image.startsWith("https") ? image : undefined,
     };
   });
 }

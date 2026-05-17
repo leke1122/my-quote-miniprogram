@@ -19,6 +19,12 @@
         data-id="{{item.id}}"
         bindtap="onItemTap"
       >
+        <image
+          wx:if="{{item.imageUrl}}"
+          class="list-thumb"
+          src="{{item.imageUrl}}"
+          mode="aspectFill"
+        />
         <view class="list-row-main">
           <text class="list-title">{{item.title}}</text>
           <text class="list-subtitle">{{item.subtitle}}</text>

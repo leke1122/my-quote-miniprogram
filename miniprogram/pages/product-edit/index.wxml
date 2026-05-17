@@ -4,6 +4,29 @@
     <input class="form-input" value="{{form.code}}" data-field="code" bindinput="onFieldInput" />
     <text class="form-label required">商品名称</text>
     <input class="form-input" value="{{form.name}}" data-field="name" bindinput="onFieldInput" placeholder="必填" />
+    <text class="form-label">商品图片</text>
+    <view class="image-picker">
+      <image
+        wx:if="{{imagePreview}}"
+        class="image-preview"
+        src="{{imagePreview}}"
+        mode="aspectFill"
+      />
+      <view wx:else class="image-preview image-preview--empty">暂无图片</view>
+      <view class="image-actions">
+        <button class="btn-image" loading="{{uploadingImage}}" disabled="{{uploadingImage || saving}}" bindtap="onChooseImage">
+          {{imagePreview ? '更换图片' : '添加图片'}}
+        </button>
+        <button
+          wx:if="{{imagePreview}}"
+          class="btn-image-clear"
+          disabled="{{uploadingImage || saving}}"
+          bindtap="onClearImage"
+        >
+          清除图片
+        </button>
+      </view>
+    </view>
     <text class="form-label">型号</text>
     <input class="form-input" value="{{form.model}}" data-field="model" bindinput="onFieldInput" />
     <text class="form-label">规格</text>

@@ -6,6 +6,7 @@ import {
   saveProduct,
 } from "../../utils/entityStore";
 import { showSyncResult } from "../../utils/syncToast";
+import { chooseAndUploadProductImage } from "../../utils/uploadImage";
 import { ensureWechatSession } from "../../utils/wechatAuth";
 
 type ProductForm = Omit<Product, "id">;
@@ -17,6 +18,8 @@ Page({
     saving: false,
     form: emptyProductForm() as ProductForm,
     priceStr: "0",
+    imagePreview: "",
+    uploadingImage: false,
   },
 
   async onLoad(query: Record<string, string | undefined>) {
@@ -36,11 +39,18 @@ Page({
         isEdit: true,
         form,
         priceStr: String(row.price ?? 0),
+        imagePreview: row.image?.trim() ?? "",
       });
       wx.setNavigationBarTitle({ title: "编辑商品" });
       return;
     }
-    this.setData({ form: emptyProductForm(), priceStr: "0", isEdit: false, editingId: "" });
+    this.setData({
+      form: emptyProductForm(),
+      priceStr: "0",
+      isEdit: false,
+      editingId: "",
+      imagePreview: "",
+    });
     wx.setNavigationBarTitle({ title: "新增商品" });
   },
 
@@ -51,6 +61,30 @@ Page({
 
   onPriceInput(e: WechatMiniprogram.Input) {
     this.setData({ priceStr: e.detail.value });
+  },
+
+  async onChooseImage() {
+    if (this.data.uploadingImage || this.data.saving) return;
+    this.setData({ uploadingImage: true });
+    try {
+      const url = await chooseAndUploadProductImage();
+      this.setData({
+        imagePreview: url,
+        "form.image": url,
+      });
+      wx.showToast({ title: "图片已上传", icon: "success" });
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : "上传失败";
+      if (msg !== "已取消") {
+        wx.showToast({ title: msg, icon: "none", duration: 2500 });
+      }
+    } finally {
+      this.setData({ uploadingImage: false });
+    }
+  },
+
+  onClearImage() {
+    this.setData({ imagePreview: "", "form.image": "" });
   },
 
   onCancel() {
@@ -74,6 +108,7 @@ Page({
       spec: form.spec.trim(),
       unit: form.unit.trim() || "件",
       price: Number.isFinite(price) ? price : 0,
+      image: (this.data.imagePreview || form.image || "").trim(),
     });
     this.setData({ saving: false });
     showSyncResult(res, "商品已保存");
