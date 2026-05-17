@@ -1,6 +1,7 @@
 .home-page {
   min-height: 100vh;
   background: #f1f5f9;
+  padding-bottom: 32rpx;
 }
 
 .home-header {
@@ -41,19 +42,40 @@
   color: rgba(255, 255, 255, 0.55);
 }
 
+.home-body {
+  padding-top: 16rpx;
+}
+
 .hint {
   display: block;
   margin-bottom: 24rpx;
+  line-height: 1.5;
 }
 
 .module-card {
   display: flex;
   align-items: center;
+  gap: 24rpx;
   background: #fff;
   border-radius: 24rpx;
-  padding: 28rpx 32rpx;
+  padding: 28rpx 28rpx 28rpx 24rpx;
   margin-bottom: 24rpx;
   box-shadow: 0 2rpx 12rpx rgba(15, 23, 42, 0.06);
+}
+
+.module-icon {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.module-icon-emoji {
+  font-size: 44rpx;
+  line-height: 1;
 }
 
 .module-body {
@@ -77,10 +99,33 @@
 .module-tag {
   font-size: 20rpx;
   font-weight: 700;
-  color: #3d5a80;
-  background: #d0e1fb;
   padding: 4rpx 16rpx;
   border-radius: 999rpx;
+}
+
+.module-tag--blue {
+  color: #2563eb;
+  background: #dbeafe;
+}
+
+.module-tag--violet {
+  color: #7c3aed;
+  background: #ede9fe;
+}
+
+.module-tag--green {
+  color: #059669;
+  background: #d1fae5;
+}
+
+.module-tag--amber {
+  color: #b45309;
+  background: #fef3c7;
+}
+
+.module-tag--rose {
+  color: #e11d48;
+  background: #ffe4e6;
 }
 
 .module-desc {
@@ -92,7 +137,7 @@
 }
 
 .module-arrow {
-  margin-left: 16rpx;
+  flex-shrink: 0;
   font-size: 40rpx;
   color: #cbd5e1;
   font-weight: 300;

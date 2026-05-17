@@ -15,14 +15,17 @@
     </view>
   </view>
 
-  <view class="container">
+  <view class="container home-body">
     <text class="hint muted">{{syncHint}}</text>
     <block wx:for="{{modules}}" wx:key="title">
       <view class="module-card" data-url="{{item.url}}" bindtap="onModuleTap">
+        <view class="module-icon" style="background-color: {{item.iconBg}};">
+          <text class="module-icon-emoji">{{item.icon}}</text>
+        </view>
         <view class="module-body">
           <view class="module-title-row">
             <text class="module-title">{{item.title}}</text>
-            <text class="module-tag">{{item.tag}}</text>
+            <text class="module-tag {{item.tagClass}}">{{item.tag}}</text>
           </view>
           <text class="module-desc">{{item.desc}}</text>
         </view>

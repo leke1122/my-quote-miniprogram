@@ -32,6 +32,10 @@ Page({
     },
   },
 
+  onGoHome() {
+    wx.reLaunch({ url: "/pages/home/index" });
+  },
+
   async onShow() {
     const ok = await ensureWechatSession();
     if (!ok) return;

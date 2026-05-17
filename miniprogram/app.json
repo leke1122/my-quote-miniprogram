@@ -27,12 +27,6 @@
     "borderStyle": "black",
     "list": [
       {
-        "pagePath": "pages/home/index",
-        "text": "首页",
-        "iconPath": "assets/tab-home.png",
-        "selectedIconPath": "assets/tab-home-active.png"
-      },
-      {
         "pagePath": "pages/quote-new/index",
         "text": "报价",
         "iconPath": "assets/tab-quote.png",
