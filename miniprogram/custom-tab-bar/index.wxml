@@ -1,0 +1,13 @@
+<view class="tab-bar">
+  <view
+    wx:for="{{list}}"
+    wx:key="pagePath"
+    class="tab-bar-item {{selected === index ? 'tab-bar-item--active' : ''}}"
+    data-path="{{item.pagePath}}"
+    data-index="{{index}}"
+    bindtap="onSwitchTab"
+  >
+    <image class="tab-bar-icon" src="{{selected === index ? item.selectedIconPath : item.iconPath}}" mode="aspectFit" />
+    <text class="tab-bar-text" style="color: {{selected === index ? selectedColor : color}}">{{item.text}}</text>
+  </view>
+</view>

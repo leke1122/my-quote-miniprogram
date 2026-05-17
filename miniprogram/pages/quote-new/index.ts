@@ -1,3 +1,4 @@
+import { setTabBarSelected } from "../../utils/tabBar";
 import { ensureWechatSession } from "../../utils/wechatAuth";
 
 Page({
@@ -10,6 +11,7 @@ Page({
   },
 
   async onShow() {
+    setTabBarSelected(0);
     await ensureWechatSession();
   },
 });

@@ -2,6 +2,7 @@ import { API_BASE_URL } from "../../utils/config";
 import { apiRequest } from "../../utils/request";
 import { getStoredOpenId } from "../../utils/auth";
 import { getCachedCounts, pullProjectDataFromCloud } from "../../utils/projectData";
+import { setTabBarSelected } from "../../utils/tabBar";
 import { ensureWechatSession, maskOpenId, resetWechatSession } from "../../utils/wechatAuth";
 
 interface SubResponse {
@@ -37,6 +38,7 @@ Page({
   },
 
   async onShow() {
+    setTabBarSelected(2);
     const ok = await ensureWechatSession();
     if (!ok) return;
     this.setData({ openidMask: maskOpenId(getStoredOpenId()) });

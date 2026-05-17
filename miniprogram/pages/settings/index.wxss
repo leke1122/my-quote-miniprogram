@@ -27,6 +27,10 @@
   margin-top: 20rpx;
 }
 
+.container {
+  padding-bottom: calc(120rpx + env(safe-area-inset-bottom));
+}
+
 .redeem-input {
   width: 100%;
   height: 88rpx;

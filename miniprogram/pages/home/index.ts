@@ -1,4 +1,5 @@
 import { getCachedCounts } from "../../utils/projectData";
+import { setTabBarSelected } from "../../utils/tabBar";
 import { ensureWechatSession } from "../../utils/wechatAuth";
 
 const modules = [
@@ -57,6 +58,7 @@ Page({
   },
 
   async onShow() {
+    setTabBarSelected(-1);
     const ok = await ensureWechatSession();
     if (!ok) return;
     const c = getCachedCounts();

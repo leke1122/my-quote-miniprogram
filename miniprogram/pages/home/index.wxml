@@ -33,4 +33,5 @@
       </view>
     </block>
   </view>
+  <custom-tab-bar />
 </view>
