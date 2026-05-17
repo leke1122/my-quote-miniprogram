@@ -1,6 +1,2 @@
-<view class="container">
-  <view class="card">
-    <text class="card-title">{{title}}</text>
-    <text class="card-desc">{{desc}}</text>
-  </view>
-</view>
+<import src="../../templates/list.wxml" />
+<template is="listPage" data="{{items, empty, emptyHint, countLabel}}" />

@@ -47,7 +47,10 @@ Page({
     const c = getCachedCounts();
     const total = c.products + c.customers + c.quotes + c.contracts;
     this.setData({
-      syncHint: total > 0 ? "已缓存云端数据，可在各模块中继续开发列表页" : "请在「设置」中点击「从云端拉取数据」",
+      syncHint:
+        total > 0
+          ? `已缓存：商品 ${c.products} · 客户 ${c.customers} · 我司 ${c.companies} · 报价 ${c.quotes} · 合同 ${c.contracts}`
+          : "请在「设置」中点击「从云端拉取数据」（小程序账号与网站邮箱账号独立）",
     });
   },
 

@@ -1,6 +1,10 @@
+import { mapQuoteRows } from "../../utils/listFormat";
+import { goSettingsTab, listPageData, onListPageShow } from "../../utils/listPage";
+
 Page({
-  data: {
-    title: "历史报价",
-    desc: "报价列表、筛选与导出功能开发中。",
+  data: listPageData,
+  onShow() {
+    void onListPageShow(this, mapQuoteRows);
   },
+  goSettings: goSettingsTab,
 });

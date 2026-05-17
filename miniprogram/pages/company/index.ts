@@ -1,6 +1,10 @@
+import { mapCompanyRows } from "../../utils/listFormat";
+import { goSettingsTab, listPageData, onListPageShow } from "../../utils/listPage";
+
 Page({
-  data: {
-    title: "我司信息",
-    desc: "公司主体、签章与银行账户管理开发中。",
+  data: listPageData,
+  onShow() {
+    void onListPageShow(this, mapCompanyRows);
   },
+  goSettings: goSettingsTab,
 });
