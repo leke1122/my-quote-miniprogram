@@ -50,7 +50,7 @@ Page({
       syncHint:
         total > 0
           ? `已缓存：商品 ${c.products} · 客户 ${c.customers} · 我司 ${c.companies} · 报价 ${c.quotes} · 合同 ${c.contracts}`
-          : "请在「设置」中点击「从云端拉取数据」（小程序账号与网站邮箱账号独立）",
+          : "点各模块「+ 新增」录入；保存后自动同步云端（与网站邮箱账号独立）",
     });
   },
 

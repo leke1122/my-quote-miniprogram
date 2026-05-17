@@ -1,17 +1,24 @@
 <template name="listPage">
-  <view class="container">
-    <view class="list-header" wx:if="{{countLabel}}">
-      <text class="muted">{{countLabel}}</text>
+  <view class="container list-page">
+    <view class="list-toolbar">
+      <button class="btn-primary btn-compact" bindtap="onAdd">+ 新增</button>
+      <text class="muted" wx:if="{{countLabel}}">{{countLabel}}</text>
     </view>
     <block wx:if="{{empty}}">
       <view class="empty-box">
         <text class="empty-title">暂无数据</text>
         <text class="empty-desc">{{emptyHint}}</text>
-        <button class="btn-primary" bindtap="goSettings">去设置拉取数据</button>
+        <button class="btn-primary" bindtap="onAdd">新增第一条</button>
       </view>
     </block>
     <block wx:else>
-      <view class="card list-row" wx:for="{{items}}" wx:key="id">
+      <view
+        class="card list-row"
+        wx:for="{{items}}"
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="onItemTap"
+      >
         <view class="list-row-main">
           <text class="list-title">{{item.title}}</text>
           <text class="list-subtitle">{{item.subtitle}}</text>

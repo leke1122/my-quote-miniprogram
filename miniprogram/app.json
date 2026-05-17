@@ -2,8 +2,11 @@
   "pages": [
     "pages/home/index",
     "pages/products/index",
+    "pages/product-edit/index",
     "pages/customers/index",
+    "pages/customer-edit/index",
     "pages/company/index",
+    "pages/company-edit/index",
     "pages/quote-list/index",
     "pages/contract-list/index",
     "pages/quote-new/index",

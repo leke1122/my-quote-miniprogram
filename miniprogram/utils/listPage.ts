@@ -40,3 +40,19 @@ export const listPageData: ListPageData = {
   emptyHint: EMPTY_HINT,
   countLabel: "",
 };
+
+export function bindEntityListActions(editPagePath: string): {
+  onAdd: () => void;
+  onItemTap: (e: WechatMiniprogram.TouchEvent) => void;
+} {
+  return {
+    onAdd() {
+      wx.navigateTo({ url: editPagePath });
+    },
+    onItemTap(e) {
+      const id = e.currentTarget.dataset.id as string;
+      if (!id) return;
+      wx.navigateTo({ url: `${editPagePath}?id=${encodeURIComponent(id)}` });
+    },
+  };
+}

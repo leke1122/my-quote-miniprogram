@@ -1,0 +1,27 @@
+<view class="container form-page">
+  <view class="form-card">
+    <text class="form-label required">客户编号</text>
+    <input class="form-input" value="{{form.code}}" data-field="code" bindinput="onFieldInput" />
+    <text class="form-label required">客户名称</text>
+    <input class="form-input" value="{{form.name}}" data-field="name" bindinput="onFieldInput" placeholder="必填" />
+    <text class="form-label">联系人</text>
+    <input class="form-input" value="{{form.contact}}" data-field="contact" bindinput="onFieldInput" />
+    <text class="form-label">电话</text>
+    <input class="form-input" type="number" value="{{form.phone}}" data-field="phone" bindinput="onFieldInput" />
+    <text class="form-label">地址</text>
+    <input class="form-input" value="{{form.address}}" data-field="address" bindinput="onFieldInput" />
+    <text class="form-label">主营业务</text>
+    <input class="form-input" value="{{form.mainBusiness}}" data-field="mainBusiness" bindinput="onFieldInput" />
+    <text class="form-label">税号</text>
+    <input class="form-input" value="{{form.taxId}}" data-field="taxId" bindinput="onFieldInput" />
+    <text class="form-label">开户行</text>
+    <input class="form-input" value="{{form.bankName}}" data-field="bankName" bindinput="onFieldInput" />
+    <text class="form-label">银行账号</text>
+    <input class="form-input" value="{{form.bankAccount}}" data-field="bankAccount" bindinput="onFieldInput" />
+  </view>
+</view>
+<view class="form-footer">
+  <button wx:if="{{isEdit}}" class="btn-danger" disabled="{{saving}}" bindtap="onDelete">删除</button>
+  <button class="btn-secondary" disabled="{{saving}}" bindtap="onCancel">取消</button>
+  <button class="btn-primary" loading="{{saving}}" disabled="{{saving}}" bindtap="onSave">保存</button>
+</view>

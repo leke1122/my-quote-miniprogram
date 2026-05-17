@@ -1,4 +1,4 @@
-import { getCachedProjectData } from "./projectData";
+import { getFullPayload } from "./projectData";
 
 export interface ListRow {
   id: string;
@@ -41,11 +41,10 @@ function sortByTime<T>(items: T[], pick: (item: T) => string): T[] {
   return [...items].sort((a, b) => pick(b).localeCompare(pick(a)));
 }
 
-export const EMPTY_HINT =
-  "请先到「设置」点击「从云端拉取数据」。小程序为微信独立账号，与网站邮箱账号数据不互通。";
+export const EMPTY_HINT = "暂无记录，可点击下方「新增」录入；保存后将自动同步到云端。";
 
 export function mapProductRows(): ListRow[] {
-  const list = getCachedProjectData()?.products;
+  const list = getFullPayload().products;
   if (!Array.isArray(list)) return [];
   return list.map((raw, i) => {
     const p = asRecord(raw) ?? {};
@@ -63,7 +62,7 @@ export function mapProductRows(): ListRow[] {
 }
 
 export function mapCustomerRows(): ListRow[] {
-  const list = getCachedProjectData()?.customers;
+  const list = getFullPayload().customers;
   if (!Array.isArray(list)) return [];
   return list.map((raw, i) => {
     const c = asRecord(raw) ?? {};
@@ -81,7 +80,7 @@ export function mapCustomerRows(): ListRow[] {
 }
 
 export function mapCompanyRows(): ListRow[] {
-  const list = getCachedProjectData()?.companies;
+  const list = getFullPayload().companies;
   if (!Array.isArray(list)) return [];
   return list.map((raw, i) => {
     const c = asRecord(raw) ?? {};
@@ -98,7 +97,7 @@ export function mapCompanyRows(): ListRow[] {
 }
 
 export function mapQuoteRows(): ListRow[] {
-  const list = getCachedProjectData()?.quotes;
+  const list = getFullPayload().quotes;
   if (!Array.isArray(list)) return [];
   const sorted = sortByTime(list, (raw) => {
     const q = asRecord(raw) ?? {};
@@ -119,7 +118,7 @@ export function mapQuoteRows(): ListRow[] {
 }
 
 export function mapContractRows(): ListRow[] {
-  const list = getCachedProjectData()?.contracts;
+  const list = getFullPayload().contracts;
   if (!Array.isArray(list)) return [];
   const sorted = sortByTime(list, (raw) => {
     const c = asRecord(raw) ?? {};
